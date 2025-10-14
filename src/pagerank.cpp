@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "pagerank.h"
-#include "matrixhelpers.h"
+#include "C:\Users\arkak\OneDrive - iitkgp.ac.in\Desktop\PAGE_RANK\includes\matrixhelpers.h"
+#include "C:\Users\arkak\OneDrive - iitkgp.ac.in\Desktop\PAGE_RANK\includes\pagerank.h"
 using namespace std;
 
 
@@ -15,7 +15,7 @@ vector<vector<double>> build_tx_mat(int &numpages, int &links){
     return res;
 }
 
-vector<vector<double>> google_mat(vector<vector<int>> &M,double damping){
+vector<vector<double>> google_mat(vector<vector<double>> &M,double damping){
     vector<vector<double>> G;
     int rows=M.size();
     int cols=M[0].size();
