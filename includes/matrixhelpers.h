@@ -5,7 +5,7 @@
 using namespace std;
 
 //build the cumulative columnwise probability matrix
-vector<vector<double>>build_prob_cum(vector<vector<double>> &M, int &numpages);
+void build_prob_cum(vector<vector<double>> &M);
 
 //matrix_vector_mult
 vector<double> matVec(vector<vector<double>> &mat, vector<double> &vec);
