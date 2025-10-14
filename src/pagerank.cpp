@@ -4,18 +4,18 @@
 using namespace std;
 
 
-vector<vector<double>> build_tx_mat(int &numpages){
+vector<vector<double>> build_tx_mat(int &numpages, int &links){
     vector<vector<double>> res;
     res.resize(numpages,vector<double>(numpages,0.0));
-    for(int i=0;i<numpages;i++){
+    for(int i=0;i<links;i++){
         int u,v;
         cin>>u>>v;
-        res[v-1][u-1]=1;
+        res[v-1][u-1]=1.0;
     }
     return res;
 }
 
-vector<vector<double>> google_mat(vector<vector<int>> &M,int damping){
+vector<vector<double>> google_mat(vector<vector<int>> &M,double damping){
     vector<vector<double>> G;
     int rows=M.size();
     int cols=M[0].size();
