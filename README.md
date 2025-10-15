@@ -20,12 +20,17 @@ To compile and run this project, you will need a C++ compiler (like `g++`) insta
 
 2.  Open your terminal and navigate to the directory containing the source files (`main.cpp`, `matrixhelpers.cpp`, `pagerank.cpp`).
 
-3.  If you want to test something in general like a small graph, you can use the `input.txt` to give the input to this pipeline. The output will automatically be stored in the `results.txt` for hardcoded sample inputs just make sure to change the paths in `main.cpp` in this line    string input_file = "../data/input_filename.txt";
+3.  If you want to test something in general like a small graph, you can use the `input.txt` to give the input to this pipeline. The output will automatically be stored in the `results.txt` for hardcoded sample inputs just make sure to change the paths in `main.cpp` in this line 
+                        ```bash
+                           string input_file = "../data/input_filename.txt";
                            string output_file = "../results/output_filename.txt";
+                        ```
 
 4.  Now here comes the `webscraper.py`, this file is nothing but an automated graph constructor which can construct a directed graph by tracing all the hyperlinks from a source website. Whatever website you want to use, you just need to follow 3 simple tweaks to construct the hyperlink graph and store it inside the `var_grph.txt` and also store all the unqiue links which are the nodes in the graph in the `urls.txt`. Now for using any random website just see the last line of the `webscrapper.py` i.e.
+    ```bash
     if __name__ == "__main__":
         crawl_website("https://tumahara_url.com/", max_pages=x, max_depth=y)
+    ```
 Change the attributes inside the crawl_website function and boom, it's done !
 
 5.  Compile all the source files together using the following command:
