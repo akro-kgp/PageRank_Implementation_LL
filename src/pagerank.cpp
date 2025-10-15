@@ -16,7 +16,7 @@ vector<vector<double>> build_tx_mat(const string &filename, int &numpages, int &
     for(int i=0;i<links;i++){
         int u,v;
         fin>>u>>v;
-        res[v-1][u-1]=1.0;
+        res[v-1][u-1]+=1.0; //count all links instead of ideal distributions
     }
 
     fin.close();
@@ -49,11 +49,21 @@ vector<double> computePageRank(vector<vector<double>> &G, double tolerance, int 
         vector<double> temp;
         temp=matVec(G,guess);
         //do over-relaxation
-        double sum=0;
-        for(auto k:temp) sum+=k;
-        for(auto &k:temp) k/=sum;  // iterative referencing
+        double sum=0.0;
+        for(double k:temp) sum+=k;
+        if(sum==0.0){
+            for(double &k:temp) k=1.0/rows;
+        }else{
+            for(double &k:temp) k/=sum;
+        }
         if(L1_norm(guess,temp)<tolerance) break;
         guess=temp;
+    }
+    
+    double final_sum=0.0;
+    for(double v:guess)final_sum+=v;
+    if(final_sum!=0.0) {
+        for(double &v:guess) v/=final_sum;
     }
 
     return guess;

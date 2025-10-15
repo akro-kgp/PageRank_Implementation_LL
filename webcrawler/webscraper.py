@@ -65,4 +65,4 @@ def crawl_website(start_url, max_pages=100, max_depth=2):
     print(f"URL mappings saved to {urls_path}")
 
 if __name__ == "__main__":
-    crawl_website("https://example.com", max_pages=50, max_depth=2)
+    crawl_website("https://edition.cnn.com/", max_pages=300, max_depth=3)

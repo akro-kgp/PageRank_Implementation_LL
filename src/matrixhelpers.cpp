@@ -10,9 +10,15 @@ void build_prob_cum(vector<vector<double>> &M){
         for (int i=0;i<dim;i++){
             colsum+=M[i][j];
         }
-        if(colsum==0) colsum=1.0;
-        for (int i=0;i<dim;i++){
-            M[i][j]/=colsum;
+        if(colsum==0.0){
+            //dangling node handling
+            for(int i=0;i<dim;i++){
+                M[i][j]=1.0/dim;
+            }
+        } else {
+            for (int i=0;i<dim;i++){
+                M[i][j]/=colsum;
+            }
         }
     }
 }
