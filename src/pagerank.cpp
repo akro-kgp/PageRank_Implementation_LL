@@ -84,4 +84,3 @@ void writePageRankToFile(const vector<double> &PR, const string &filename){
 }
 
 
-
