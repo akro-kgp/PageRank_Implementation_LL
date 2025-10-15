@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
-#include "C:\Users\arkak\OneDrive - iitkgp.ac.in\Desktop\PAGE_RANK\includes\matrixhelpers.h"
-#include "C:\Users\arkak\OneDrive - iitkgp.ac.in\Desktop\PAGE_RANK\includes\pagerank.h"
+#include "C:\\Users\\arkak\\OneDrive - iitkgp.ac.in\\Desktop\\PAGE_RANK\\includes\\matrixhelpers.h"
+#include "C:\\Users\\arkak\\OneDrive - iitkgp.ac.in\\Desktop\\PAGE_RANK\\includes\\pagerank.h"
+
 using namespace std;
 
 int main() {
@@ -8,16 +9,13 @@ int main() {
     double damping = 0.85, tolerance = 1e-6;
     int iters = 100;
 
-    cout << "Enter number of pages: ";
-    cin >> numpages;
+    string input_file = "../data/input.txt"; //input graph file
+    string output_file = "../results/results.txt"; //output PageRank file
 
-    cout << "Enter number of links: ";
-    cin >> links;
+    // Build adjacency matrix from file
+    vector<vector<double>> M = build_tx_mat(input_file, numpages, links);
 
-    cout << "Enter " << links << " directed links as (from to):\n";
-    vector<vector<double>> M = build_tx_mat(numpages, links);
-
-    cout << "\nInitial adjacency (transition) matrix:\n";
+    cout << "Initial adjacency (transition) matrix:\n";
     for (auto &row : M) {
         for (auto &x : row) cout << x << " ";
         cout << "\n";
@@ -44,9 +42,15 @@ int main() {
     // Compute PageRank
     vector<double> ranks = computePageRank(G, tolerance, iters);
 
-    cout << "\nFinal PageRank values after convergence:\n";
-    for (int i = 0; i < ranks.size(); i++)
-        cout << "Page " << i + 1 << ": " << fixed << setprecision(6) << ranks[i] << "\n";
+    // Write PageRank values to output file
+    writePageRankToFile(ranks, output_file);
+
+    cout << "\nPageRank calculation done. Results saved to " << output_file << endl;
+    //display
+    cout<<"\nPagerank vector as follows"<<endl;
+    for(int i=0;i<ranks.size();i++){
+        cout<<"rank of page "<<i<<": "<<ranks[i]<<endl;
+    }
 
     return 0;
 }

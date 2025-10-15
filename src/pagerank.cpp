@@ -4,14 +4,22 @@
 using namespace std;
 
 
-vector<vector<double>> build_tx_mat(int &numpages, int &links){
+vector<vector<double>> build_tx_mat(const string &filename, int &numpages, int &links){
+    ifstream fin(filename);
+    if(!fin.is_open()){
+        cerr<<"Error opening input file!"<<endl;
+        exit(1);
+    }
+    fin>>numpages>>links;
     vector<vector<double>> res;
     res.resize(numpages,vector<double>(numpages,0.0));
     for(int i=0;i<links;i++){
         int u,v;
-        cin>>u>>v;
+        fin>>u>>v;
         res[v-1][u-1]=1.0;
     }
+
+    fin.close();
     return res;
 }
 
@@ -50,5 +58,20 @@ vector<double> computePageRank(vector<vector<double>> &G, double tolerance, int 
 
     return guess;
 }
+
+void writePageRankToFile(const vector<double> &PR, const string &filename){
+    ofstream fout(filename);
+    if(!fout.is_open()){
+        cerr<<"Error opening output file!"<<endl;
+        exit(1);
+    }
+
+    for(double val:PR){
+        fout<<val<<endl;
+    }
+
+    fout.close();
+}
+
 
 
