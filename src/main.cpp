@@ -9,8 +9,8 @@ int main() {
     double damping = 0.85, tolerance = 1e-6;
     int iters = 100;
 
-    string input_file = "../data/input.txt"; //input graph file
-    string output_file = "../results/results.txt"; //output PageRank file
+    string input_file = "../data/var_grph.txt"; //input graph file
+    string output_file = "../results/var_res.txt"; //output PageRank file
 
     // Build adjacency matrix from file
     vector<vector<double>> M = build_tx_mat(input_file, numpages, links);
