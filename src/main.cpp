@@ -51,6 +51,11 @@ int main() {
     for(int i=0;i<ranks.size();i++){
         cout<<"rank of page "<<i<<": "<<ranks[i]<<endl;
     }
+    double ker=0;
+    for(int i=0;i<ranks.size();i++){
+        ker+=ranks[i];
+    }
+    cout<<"Converging value is : "<<ker<<endl;
 
     return 0;
 }
